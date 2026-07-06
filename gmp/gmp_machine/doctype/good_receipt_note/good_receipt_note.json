@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2025-10-07 10:06:42.927816",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_rk3t",
+  "amended_from",
+  "naming_series",
+  "company",
+  "company_series",
+  "purchase_order",
+  "supplier",
+  "column_break_ysnc",
+  "set_warehouse",
+  "received_by",
+  "received_date_and_time",
+  "section_break_pzgv",
+  "items",
+  "section_break_tcix",
+  "long_text_xncl"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_rk3t",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Good Receipt Note",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "GRN-.#####."
+  },
+  {
+   "fetch_from": "purchase_order.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "company.company_series",
+   "fieldname": "company_series",
+   "fieldtype": "Data",
+   "label": "Company Series",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Purchase Order",
+   "options": "Purchase Order",
+   "read_only": 1,
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "purchase_order.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ysnc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Select a warehouse to apply to all rows.",
+   "fieldname": "set_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Link",
+   "label": "Received By",
+   "options": "User"
+  },
+  {
+   "default": "Now",
+   "fieldname": "received_date_and_time",
+   "fieldtype": "Datetime",
+   "label": "Received Date and Time"
+  },
+  {
+   "fieldname": "section_break_pzgv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Good Receipt Note Item"
+  },
+  {
+   "fieldname": "section_break_tcix",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "long_text_xncl",
+   "fieldtype": "Long Text"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "group": "Purchase Receipt",
+   "link_doctype": "Purchase Receipt",
+   "link_fieldname": "good_receipt_note"
+  }
+ ],
+ "modified": "2026-07-06 11:16:54.701339",
+ "modified_by": "Administrator",
+ "module": "Gmp Machine",
+ "name": "Good Receipt Note",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

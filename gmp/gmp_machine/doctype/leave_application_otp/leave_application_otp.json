@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-01 16:55:26.463453",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "otp",
+  "employee",
+  "employee_name",
+  "expire_in_minutes",
+  "column_break_hwth",
+  "created_on",
+  "status",
+  "leave_approver",
+  "leave_approver_name",
+  "test"
+ ],
+ "fields": [
+  {
+   "fieldname": "otp",
+   "fieldtype": "Int",
+   "label": "OTP"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "default": "5",
+   "fieldname": "expire_in_minutes",
+   "fieldtype": "Select",
+   "label": "Expire in Minutes",
+   "options": "5\n10\n15"
+  },
+  {
+   "fieldname": "column_break_hwth",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "created_on",
+   "fieldtype": "Datetime",
+   "label": "Created On"
+  },
+  {
+   "default": "Not Validate",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Validate\nValidated\nExpired"
+  },
+  {
+   "fetch_from": "employee.leave_approver",
+   "fieldname": "leave_approver",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Leave Approver",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "leave_approver.full_name",
+   "fieldname": "leave_approver_name",
+   "fieldtype": "Data",
+   "label": "Leave Approver Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Data",
+   "label": "test"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-06 11:15:56.649704",
+ "modified_by": "Administrator",
+ "module": "Gmp Machine",
+ "name": "Leave Application OTP",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
