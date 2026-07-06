@@ -1,0 +1,335 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "allow_rename": 1,
+ "creation": "2026-07-05 16:35:45.823711",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_jeop",
+  "amended_from",
+  "title_name",
+  "os_date",
+  "date",
+  "notes",
+  "dispatch_status",
+  "column_break_lvmf",
+  "company",
+  "workflow_level",
+  "pfi_no",
+  "pfi_date",
+  "quotation_no",
+  "quotation_date",
+  "section_break_amxl",
+  "column_break_rqfc",
+  "items",
+  "section_break_ijxz",
+  "prepared_by",
+  "checked_by_1",
+  "column_break_afbj",
+  "checked_by_2",
+  "approved_by",
+  "section_break_lcnu",
+  "workflow_states_record",
+  "tab_2_tab",
+  "section_break_tzfu",
+  "letter_head",
+  "column_break_ozbf",
+  "print_format",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_jeop",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Order Sheet",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "title_name",
+   "fieldtype": "Data",
+   "label": "Title  Name",
+   "read_only_depends_on": "eval:!doc.__islocal"
+  },
+  {
+   "fieldname": "os_date",
+   "fieldtype": "Date",
+   "label": "OS Date"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Delivery Date"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "label": "IDF No./Form M No. /LC No."
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "dispatch_status",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Dispatch Status",
+   "options": "\nDispatched\nPending"
+  },
+  {
+   "fieldname": "column_break_lvmf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_level",
+   "fieldtype": "Int",
+   "label": "Workflow Level",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pfi_no",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "pfi_no.transaction_date",
+   "fieldname": "pfi_date",
+   "fieldtype": "Date",
+   "label": "Sales Order Date"
+  },
+  {
+   "fieldname": "quotation_no",
+   "fieldtype": "Link",
+   "label": "Quotation No.",
+   "options": "Quotation"
+  },
+  {
+   "fetch_from": "quotation_no.transaction_date",
+   "fieldname": "quotation_date",
+   "fieldtype": "Date",
+   "label": "Quotation Date"
+  },
+  {
+   "fieldname": "section_break_amxl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "column_break_rqfc",
+   "fieldtype": "Column Break",
+   "read_only": 1
+  },
+  {
+   "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "ignore_user_permissions": 1,
+   "label": "Items",
+   "options": "Order Sheet Item",
+   "read_only": 1
+  },
+  {
+   "description": "These fields auto-update after document approval, as noted in the section description.",
+   "fieldname": "section_break_ijxz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prepared_by",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Prepared By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "checked_by_1",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Checked by_1",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_afbj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "checked_by_2",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Checked_by_2",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Approved by",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_lcnu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "workflow_states_record",
+   "fieldtype": "Table",
+   "ignore_user_permissions": 1,
+   "label": "Workflow States Record",
+   "options": "Workflow State Record",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "section_break_tzfu",
+   "fieldtype": "Section Break",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "GMP Machineries and Packaging-Address Update",
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "label": "Letter Head",
+   "options": "Letter Head",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "column_break_ozbf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Final Order Sheet PF",
+   "fieldname": "print_format",
+   "fieldtype": "Link",
+   "label": "Print Format",
+   "options": "Print Format",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Order Sheet",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "make_attachments_public": 1,
+ "modified": "2026-07-05 16:35:45.823711",
+ "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "module": "Gmp Machine",
+ "name": "Order Sheet",
+ "naming_rule": "By script",
+ "owner": "connecttoshubhamprabhat@gmail.com",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Master Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

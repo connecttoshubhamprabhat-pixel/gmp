@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-05 16:41:45.217381",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "auto_mr_create_settings_tab",
+  "tab_1",
+  "auto_indent",
+  "reorder_email_notify",
+  "consider_draft_mreq_before_mreq_raise",
+  "consider_approved_mreq_before_mreq_raise",
+  "calculate_qty_dynamically",
+  "consider_material_request_type_purchase",
+  "consider_material_request_type_material_transfer",
+  "tab_2",
+  "test"
+ ],
+ "fields": [
+  {
+   "fieldname": "auto_mr_create_settings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Auto MR Create Settings"
+  },
+  {
+   "fieldname": "tab_1",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "auto_indent",
+   "fieldtype": "Check",
+   "label": " Raise Material Request When Stock Reaches Re-order Level"
+  },
+  {
+   "default": "0",
+   "fieldname": "reorder_email_notify",
+   "fieldtype": "Check",
+   "label": "Notify by Email on Creation of Automatic Material Request"
+  },
+  {
+   "default": "0",
+   "fieldname": "consider_draft_mreq_before_mreq_raise",
+   "fieldtype": "Check",
+   "label": "Consider Draft MREQ"
+  },
+  {
+   "default": "0",
+   "fieldname": "consider_approved_mreq_before_mreq_raise",
+   "fieldtype": "Check",
+   "label": "Consider Approved MREQ"
+  },
+  {
+   "default": "0",
+   "fieldname": "calculate_qty_dynamically",
+   "fieldtype": "Check",
+   "label": "Calculate MR Qty Dynamically"
+  },
+  {
+   "default": "1",
+   "fieldname": "consider_material_request_type_purchase",
+   "fieldtype": "Check",
+   "label": "Consider Material Request Type= 'Purchase'",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "consider_material_request_type_material_transfer",
+   "fieldtype": "Check",
+   "label": "Consider Material Request Type= 'Material Transfer'"
+  },
+  {
+   "fieldname": "tab_2",
+   "fieldtype": "Tab Break",
+   "label": "Auto PO Create Settings"
+  },
+  {
+   "default": "0",
+   "fieldname": "test",
+   "fieldtype": "Check",
+   "label": "Test"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-07-05 16:41:45.217381",
+ "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "module": "Gmp Machine",
+ "name": "Custom Settings",
+ "owner": "connecttoshubhamprabhat@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1
+}

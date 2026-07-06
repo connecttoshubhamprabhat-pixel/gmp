@@ -1,0 +1,592 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-07-05 16:29:01.281265",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_wvay",
+  "amended_from",
+  "naming_series",
+  "posting_date",
+  "column_break_azgb",
+  "company",
+  "company_series",
+  "custom_workflow_level",
+  "image",
+  "section_break_ekgn",
+  "purchase_order",
+  "purchase_order_duplicate",
+  "project",
+  "po_basic_value",
+  "total_taxes_and_charges",
+  "po_original_amount",
+  "currency",
+  "column_break_lnqx",
+  "goods_detail",
+  "purchase_order_date",
+  "section_break_kzyh",
+  "supplier",
+  "supplier_name",
+  "column_break_rowg",
+  "supplier_gst_uin",
+  "gst_uin_status",
+  "address",
+  "section_break_ihxl",
+  "bank_name",
+  "account_no",
+  "ifsc",
+  "column_break_rgve",
+  "mode_of_payment",
+  "payment_amount",
+  "payment_amount_in_words",
+  "invoice_details",
+  "section_break_ctzw",
+  "po_details",
+  "section_break_tuwr",
+  "payment_intimation_po_details",
+  "section_break_nmam",
+  "material_details",
+  "section_break_sblu",
+  "total_payment_amount",
+  "remark",
+  "column_break_qrmk",
+  "payable_balance_amount",
+  "section_break_kmew",
+  "grand_basic_material_value",
+  "grand_total_transport",
+  "grand_total_packing",
+  "column_break_qgmq",
+  "grand_total_other_charges",
+  "grand_total_material",
+  "column_break_tfoc",
+  "grand_gst_total",
+  "grand_grand_total_material",
+  "po_balance_amount",
+  "section_break_oxnc",
+  "invoice_summary",
+  "section_break_jiit",
+  "payment_history",
+  "tab_2_tab",
+  "abcssss_dfds",
+  "payment_status",
+  "column_break_fmkm",
+  "percentage_paid",
+  "section_break_vnnk",
+  "letter_head",
+  "column_break_xpob",
+  "print_format",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_wvay",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payment Intimation Slip",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "description": "1. Select series for Project PO<br>\n.{project}.-PIS-.###.-2025-26<br><br>\n\n2. Select series for General PO<br>\n.{company_series}.-PIS-.###.-2025-26\n",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_standard_filter": 1,
+   "label": "Naming Series",
+   "options": "\n.{project}.-PIS-.###.-2025-26\n.{company_series}.-PIS-.###.-2025-26",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "PIS Date"
+  },
+  {
+   "fieldname": "column_break_azgb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "company.abbr",
+   "fieldname": "company_series",
+   "fieldtype": "Data",
+   "label": "Company Series",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "custom_workflow_level",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Custom Workflow Level",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "section_break_ekgn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Purchase Order",
+   "options": "Purchase Order",
+   "read_only_depends_on": "eval: !doc.__islocal"
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "purchase_order_duplicate",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "ignore_user_permissions": 1,
+   "label": "Purchase Order Duplicate",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fetch_from": "purchase_order.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "purchase_order.total",
+   "fieldname": "po_basic_value",
+   "fieldtype": "Currency",
+   "label": "PO Basic Value"
+  },
+  {
+   "fetch_from": "purchase_order.total_taxes_and_charges",
+   "fieldname": "total_taxes_and_charges",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Taxes and Charges",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "purchase_order.grand_total",
+   "fieldname": "po_original_amount",
+   "fieldtype": "Currency",
+   "label": "Total PO Amount"
+  },
+  {
+   "fetch_from": "purchase_order.currency",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "column_break_lnqx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "goods_detail",
+   "fieldtype": "Data",
+   "label": "Goods Detail"
+  },
+  {
+   "fetch_from": "purchase_order.transaction_date",
+   "fieldname": "purchase_order_date",
+   "fieldtype": "Date",
+   "label": "Purchase Order Date"
+  },
+  {
+   "fieldname": "section_break_kzyh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "purchase_order.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name"
+  },
+  {
+   "fieldname": "column_break_rowg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "supplier.gstin",
+   "fieldname": "supplier_gst_uin",
+   "fieldtype": "Data",
+   "label": "Supplier GST / UIN",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "gst_uin_status",
+   "fieldtype": "Select",
+   "label": "GST/UIN Status",
+   "options": "Active\nNot Active"
+  },
+  {
+   "fetch_from": "purchase_order.address_display",
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "section_break_ihxl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "Account No."
+  },
+  {
+   "fieldname": "ifsc",
+   "fieldtype": "Data",
+   "label": "IFSC"
+  },
+  {
+   "fieldname": "column_break_rgve",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "payment_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Payment Amount",
+   "mandatory_depends_on": "eval: doc.payment_amount ===0 || doc.payment_amount <= 0",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payment_amount_in_words",
+   "fieldtype": "Data",
+   "label": "Payment Amount in Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "invoice_details",
+   "fieldtype": "Data",
+   "label": "Invoice Details"
+  },
+  {
+   "fieldname": "section_break_ctzw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "po_details",
+   "fieldtype": "Table",
+   "label": "PO Details",
+   "options": "Payment Intimation Slip Charges Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_tuwr",
+   "fieldtype": "Section Break",
+   "label": "Purchase Order Details"
+  },
+  {
+   "fieldname": "payment_intimation_po_details",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Payment Intimation PO Details",
+   "options": "Payment Intimation PO Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_nmam",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "material_details",
+   "fieldtype": "Table",
+   "label": "Payment Details",
+   "options": "Payment Intimation Material Details"
+  },
+  {
+   "fieldname": "section_break_sblu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_payment_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Payment Amount",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "remark",
+   "fieldtype": "Small Text",
+   "label": "Remark",
+   "max_height": "80px"
+  },
+  {
+   "fieldname": "column_break_qrmk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payable_balance_amount",
+   "fieldtype": "Currency",
+   "label": "Payable Balance Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_kmew",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_basic_material_value",
+   "fieldtype": "Currency",
+   "label": "Grand Basic Material Value",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_total_transport",
+   "fieldtype": "Currency",
+   "label": "Grand Total Transport",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_total_packing",
+   "fieldtype": "Currency",
+   "label": "Grand Total Packing",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qgmq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_total_other_charges",
+   "fieldtype": "Currency",
+   "label": "Grand Total Other Charges",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_total_material",
+   "fieldtype": "Currency",
+   "label": "Grand Total Material",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tfoc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_gst_total",
+   "fieldtype": "Currency",
+   "label": "Grand GST Total",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_grand_total_material",
+   "fieldtype": "Currency",
+   "label": "Grand Grand Total",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "po_balance_amount",
+   "fieldtype": "Currency",
+   "label": "PO Balance Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_oxnc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "invoice_summary",
+   "fieldtype": "Table",
+   "label": "Invoice Details",
+   "options": "Payment Intimation Slip Invoice Details"
+  },
+  {
+   "fieldname": "section_break_jiit",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payment_history",
+   "fieldtype": "Table",
+   "label": "Payment History",
+   "options": "Payment Intimation Payment Details"
+  },
+  {
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "More Info"
+  },
+  {
+   "fieldname": "abcssss_dfds",
+   "fieldtype": "Section Break",
+   "label": "Payment Status"
+  },
+  {
+   "allow_on_submit": 1,
+   "columns": 1,
+   "default": "Unpaid",
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Payment Status",
+   "options": "\nPaid\nPartially Paid\nUnpaid"
+  },
+  {
+   "fieldname": "column_break_fmkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "percentage_paid",
+   "fieldtype": "Percent",
+   "ignore_user_permissions": 1,
+   "label": "Percentage Paid",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_vnnk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Letter Head",
+   "options": "Letter Head",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "column_break_xpob",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Payment Intimation Slip v1",
+   "fieldname": "print_format",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Print Format",
+   "options": "Print Format",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payment Intimation Slip",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-07-05 16:29:01.281265",
+ "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "module": "Gmp Machine",
+ "name": "Payment Intimation Slip",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "connecttoshubhamprabhat@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

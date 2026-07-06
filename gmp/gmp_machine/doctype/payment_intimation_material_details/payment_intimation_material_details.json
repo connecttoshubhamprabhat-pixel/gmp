@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-05 16:15:46.932547",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_material_value",
+  "transport",
+  "packing",
+  "other_charges",
+  "total_material",
+  "gst_percentage",
+  "gst_amount",
+  "grand_total_material",
+  "payment_date"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "basic_material_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Material Value",
+   "options": "currency"
+  },
+  {
+   "columns": 1,
+   "fieldname": "transport",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Transport",
+   "options": "currency"
+  },
+  {
+   "columns": 1,
+   "fieldname": "packing",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Packing",
+   "options": "currency"
+  },
+  {
+   "columns": 1,
+   "fieldname": "other_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Other Charges",
+   "options": "currency"
+  },
+  {
+   "columns": 1,
+   "fieldname": "total_material",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Material",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "gst_percentage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "GST %"
+  },
+  {
+   "columns": 1,
+   "fieldname": "gst_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "GST Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "columns": 2,
+   "fieldname": "grand_total_material",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total Material",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Payment Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-05 16:15:46.932547",
+ "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "module": "Gmp Machine",
+ "name": "Payment Intimation Material Details",
+ "owner": "connecttoshubhamprabhat@gmail.com",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

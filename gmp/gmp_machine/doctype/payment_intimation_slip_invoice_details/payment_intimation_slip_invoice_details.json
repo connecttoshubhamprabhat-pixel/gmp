@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-05 16:14:46.757283",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_number",
+  "basic_material_value",
+  "transport_charges",
+  "packing_charges",
+  "other_charges",
+  "total_material_charges",
+  "gst_percentgae",
+  "gst_amount",
+  "grand_total_material_charges",
+  "invoice_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Invoice Number"
+  },
+  {
+   "fieldname": "basic_material_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Basic Material Value"
+  },
+  {
+   "fieldname": "transport_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Transport Charges"
+  },
+  {
+   "fieldname": "packing_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Packing Charges"
+  },
+  {
+   "fieldname": "other_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Other Charges"
+  },
+  {
+   "fieldname": "total_material_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Material Charges"
+  },
+  {
+   "fieldname": "gst_percentgae",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "GST %"
+  },
+  {
+   "fieldname": "gst_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "GST Amount"
+  },
+  {
+   "fieldname": "grand_total_material_charges",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Grand Total Material Charges"
+  },
+  {
+   "fieldname": "invoice_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-05 16:14:46.757283",
+ "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "module": "Gmp Machine",
+ "name": "Payment Intimation Slip Invoice Details",
+ "owner": "connecttoshubhamprabhat@gmail.com",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
