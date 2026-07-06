@@ -6,7 +6,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "bought_out_item_type"
+  "bought_out_item_type",
+  "test"
  ],
  "fields": [
   {
@@ -16,13 +17,18 @@
    "in_list_view": 1,
    "label": "Bought Out Item Type",
    "options": "\nBEARING\nSCREW\nNUT\nWASHER\nCIRCLIP\nKEY\nPIN\nCLAMP\nCOUPLING\nVALVE\nPUMP\nBELT & PULLEY\nHANDLE HAND WHEEL KNOB\nTROLLEY WHEEL\nHINGE\nO- RINGS SEAL GASKET\nNIPPLE\nSTRUCTURAL MEMBER\nCONVEYOR-ACCESSORIES\nALU SECTIONS-ACCESSORIES\nPNEUMATIC\nMOTOR GEAR BOX SERVO\nELECTRICAL-ACCESSORIES"
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Data",
+   "label": "test"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-07-06 11:25:11.206558",
+ "modified": "2026-07-06 11:39:40.044423",
  "modified_by": "Administrator",
  "module": "Gmp Machine",
  "name": "HSN Code Bought Out",
