@@ -1,0 +1,244 @@
+########################### API File code ###################################
+import frappe
+from erpnext.accounts.utils import get_fiscal_year
+from erpnext.stock.doctype.repost_item_valuation.repost_item_valuation import execute_repost_item_valuation
+from frappe.model.mapper import get_mapped_doc
+from frappe.utils import now_datetime
+
+
+def get_fiscal(date):
+    fy = get_fiscal_year(date)[0]
+    fiscal = frappe.db.get_value("Fiscal Year", fy, "fiscal")
+
+    return fiscal if fiscal else fy.split("-")[0][2:] + fy.split("-")[1][2:]
+
+
+def get_naming_series_name(name, fiscal=None, company_series=None):
+    today = now_datetime().date()
+
+    if fiscal == None:
+        fiscal = ""
+    if company_series:
+        name = name.replace("company_series", str(company_series))
+
+    name = name.replace("YYYY", str(today.year))
+    name = name.replace("YY", str(today.year)[2:])
+    name = name.replace("MM", "{0:0=2d}".format(today.month))
+    name = name.replace("DD", "{0:0=2d}".format(today.day))
+    name = name.replace("fiscal", str(fiscal))
+    name = name.replace("#", "")
+    name = name.replace(".", "")
+    return name
+
+
+@frappe.whitelist()
+def check_counter_series(name, company_series=None, date=None):
+    if not date:
+        date = now_datetime().date()
+    fiscal = get_fiscal(date)
+    name = get_naming_series_name(name, fiscal, company_series)
+    check = frappe.db.get_value("Series", name, "current", order_by="name")
+    if check == 0:
+        return 1
+    elif check is None:
+        frappe.db.sql(f"INSERT INTO `tabSeries` (name, current) values ('{name}', 0)")
+        return 1
+    else:
+        return int(frappe.db.get_value("Series", name, "current", order_by="name")) + 1
+
+
+@frappe.whitelist()
+def make_meetings(source_name, doctype, ref_doctype, target_doc=None):
+    def set_missing_values(source, target):
+        target.party_type = doctype
+        target.party = source_name
+        now = now_datetime()
+        if ref_doctype == "Meeting Schedule":
+            target.scheduled_from = target.scheduled_to = now
+        else:
+            target.meeting_from = target.meeting_to = now
+            if doctype == "Lead":
+                target.organization = source.company_name
+
+    doclist = get_mapped_doc(
+        doctype,
+        source_name,
+        {
+            doctype: {
+                "doctype": ref_doctype,
+                "field_map": {
+                    "company_name": "organization",
+                    "customer_name": "organization",
+                    "contact_email": "email_id",
+                    "contact_mobile": "mobile_no",
+                },
+                "field_no_map": ["naming_series", "lead", "customer", "opportunity"],
+            }
+        },
+        target_doc,
+        set_missing_values,
+    )
+
+    return doclist
+
+
+@frappe.whitelist()
+def repost_transaction_entries():
+    execute_repost_item_valuation()
+
+# email templates
+
+@frappe.whitelist()
+def sales_invoice_payment_remainder():
+	frappe.enqueue(send_sales_invoice_mails, queue='long', timeout=5000, job_name='Payment Reminder Mails')
+	return "Payment Reminder Mails Send"
+
+
+@frappe.whitelist()
+def send_sales_invoice_mails():
+	account_settings = frappe.get_doc("Accounts Settings")
+
+	if not account_settings.send_overdue_reminder:
+		return
+
+	data = frappe.get_all("Sales Invoice", filters={
+			'status': ['in', ('Overdue')],
+			'outstanding_amount':(">", 5000),
+			'docstatus': 1,
+			'is_opening': 'No',
+		},
+		order_by='posting_date',
+		group_by= "customer,company",
+		fields=["group_concat(name) as name", "customer", "company"]
+	)
+	email_template = frappe.get_doc("Email Template", "Payment Reminder")
+
+	if account_settings.send_testing_overdue_mail:
+		recipients = ",".join([row.email_id for row in account_settings.test_recipients_emails])
+		
+	for d in data:
+		sender = frappe.db.get_value("Company",d.company,"send_from_overdue_email")
+		
+		if not sender:
+			continue
+		
+		context = {"customer": d.customer, "company": d.company}
+		context['sales_invoices'] = [frappe.get_doc("Sales Invoice", name) for name in d.name.split(",")]
+
+		recipients_emails = ",".join([doc.email for doc in context['sales_invoices'] if doc.email and doc.email.replace(" ", "")])
+		emails = ",".join(sorted(list(set(recipients_emails.split(",")))))
+		
+		if not account_settings.send_testing_overdue_mail:
+			if not recipients_emails:
+				continue
+			recipients = emails
+		else:
+			context["emails"] = emails
+
+		try:
+			frappe.sendmail(
+				recipients=recipients,
+				sender=sender,
+				subject=frappe.render_template(email_template.subject, context),
+				message=frappe.render_template(email_template.response_html, context),
+			)
+		except Exception as e:
+			frappe.log_error("Mail Sending Issue", frappe.get_traceback())
+			print(frappe.get_traceback())
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################# naming_series file code ##########################
+
+
+import frappe
+# from finbyzerp.api import get_naming_series_name, get_fiscal
+from frappe.utils import cint, getdate
+
+
+def before_naming(self, method):
+    if not self.get("amended_from") and not self.get("name"):
+        date = (
+            self.get("transaction_date")
+            or self.get("posting_date")
+            or self.get("manufacturing_date")
+            or self.get("date")
+            or getdate()
+        )
+        
+        fiscal = get_fiscal(date)
+        self.fiscal = fiscal
+        
+        if not self.get("company_series"):
+            self.company_series = None
+
+        if self.get("series_value"):
+            if self.series_value > 0:
+                name = get_naming_series_name(
+                    self.naming_series, fiscal, self.company_series
+                )
+                check = frappe.db.get_value("Series", name, "current", order_by="name")
+                if check == 0:
+                    pass
+                elif not check:
+                    frappe.db.sql(
+                        f"INSERT INTO `tabSeries` (name, current) VALUES ('{name}', 0)"
+                    )
+
+                frappe.db.sql(
+                    f"UPDATE `tabSeries` SET current = {cint(self.series_value) - 1} WHERE name = '{name}'"
+                )
+
+def before_insert(self, method):
+	set_opening_naming_series(self)
+
+def set_opening_naming_series(self):
+	if not self.name and self.is_opening == "Yes":
+		self.naming_series = "O" + self.naming_series
+		if self.naming_series.find("Ofiscal") != -1:
+			self.naming_series = self.naming_series.replace("Ofiscal", "O.fiscal")
+		
+		if self.naming_series.find("Ocompany_series") != -1:
+			self.naming_series = self.naming_series.replace("Ocompany_series", "O.company_series")
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############.    gmp.gmp.gmp_machine.doc_event.naming_series.before_naming
