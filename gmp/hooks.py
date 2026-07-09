@@ -146,6 +146,9 @@ doc_events = {
 	},
     "Sales Order":{
         "validate": "gmp.gmp_machine.doc_event.sales_order.validate"
+    },
+    "*": {
+        "before_naming": "gmp.gmp_machine.doc_event.naming_series.before_naming",
     }
 }
 
