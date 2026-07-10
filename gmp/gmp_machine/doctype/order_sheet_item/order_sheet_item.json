@@ -118,7 +118,7 @@
    "fieldname": "gst_hsn_code",
    "fieldtype": "Link",
    "label": "GST HSN Code",
-   "options": "Purchase Order",
+   "options": "GST HSN Code",
    "read_only": 1
   },
   {
