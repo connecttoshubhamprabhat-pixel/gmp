@@ -149,6 +149,12 @@ doc_events = {
     },
     "*": {
         "before_naming": "gmp.gmp_machine.doc_event.naming_series.before_naming",
+    },
+    "Purchase Order": {
+        "validate": "gmp.gmp_machine.doc_event.po_os_events.validate_order_sheet_linkage",
+        "on_update": "gmp.gmp_machine.doc_event.po_os_events.update_order_sheet_item",
+        "on_cancel": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
+        "on_trash": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link"
     }
 }
 
