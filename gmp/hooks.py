@@ -155,6 +155,9 @@ doc_events = {
         "on_update": "gmp.gmp_machine.doc_event.po_os_events.update_order_sheet_item",
         "on_cancel": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
         "on_trash": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link"
+    },
+    "Order Sheet": {
+        "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
     }
 }
 
