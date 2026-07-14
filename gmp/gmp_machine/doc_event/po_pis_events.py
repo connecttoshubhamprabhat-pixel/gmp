@@ -47,11 +47,48 @@ def validate_delete_po(self, method):
 		)
 		
 
+def on_amend_po(self, method):
+	"""
+	Code Type 4 (Amend)
+	When a Purchase Order is amended, a new PO doc is created with
+	'amended_from' pointing to the old (cancelled) PO name.
+	Check if that old name exists in any Payment Intimation Slip's
+	'purchase_order' or 'purchase_order_duplicate' field.
+	If found, update 'purchase_order' with the new amended PO name
+	and clear 'purchase_order_duplicate'.
+	"""
+	if not self.amended_from:
+		return
+
+	linked = frappe.db.sql("""
+		SELECT name FROM `tabPayment Intimation Slip`
+		WHERE purchase_order_duplicate = %s OR purchase_order = %s
+	""", (self.amended_from, self.amended_from))
+
+	if not linked:
+		return
+
+	frappe.db.sql("""
+		UPDATE `tabPayment Intimation Slip`
+		SET purchase_order = %s,
+			purchase_order_duplicate = ''
+		WHERE purchase_order_duplicate = %s OR purchase_order = %s
+	""", (self.name, self.amended_from, self.amended_from))
+
+
+
+
+
+
+
+
+
 
 
 ########### gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po
 ########### gmp.gmp_machine.doc_event.po_pis_events.after_rename_po
 ########### gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po
+########### gmp.gmp_machine.doc_event.po_pis_events.on_amend_po
 
 
 
