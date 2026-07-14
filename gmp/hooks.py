@@ -136,15 +136,40 @@ doctype_js = {
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
-# Document Events
-# ---------------
-# Hook on document methods and events
+# # Document Events
+# # ---------------
+# # Hook on document methods and events
+
+# doc_events = {
+# 	"Quotation": {
+# 		"validate": "gmp.gmp_machine.doc_event.quotation.validate",
+# 	},
+#     "Sales Order":{
+#         "validate": "gmp.gmp_machine.doc_event.sales_order.validate"
+#     },
+#     "*": {
+#         "before_naming": "gmp.gmp_machine.doc_event.naming_series.before_naming",
+#     },
+#     "Purchase Order": {
+#         "validate": "gmp.gmp_machine.doc_event.po_os_events.validate_order_sheet_linkage",
+#         "on_update": "gmp.gmp_machine.doc_event.po_os_events.update_order_sheet_item",
+#         "on_cancel": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
+#         "on_trash": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link"
+#     },
+#     "Order Sheet": {
+#         "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
+#     }
+# }
+
+
+
+
 
 doc_events = {
-	"Quotation": {
-		"validate": "gmp.gmp_machine.doc_event.quotation.validate",
-	},
-    "Sales Order":{
+    "Quotation": {
+        "validate": "gmp.gmp_machine.doc_event.quotation.validate",
+    },
+    "Sales Order": {
         "validate": "gmp.gmp_machine.doc_event.sales_order.validate"
     },
     "*": {
@@ -153,13 +178,24 @@ doc_events = {
     "Purchase Order": {
         "validate": "gmp.gmp_machine.doc_event.po_os_events.validate_order_sheet_linkage",
         "on_update": "gmp.gmp_machine.doc_event.po_os_events.update_order_sheet_item",
-        "on_cancel": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
-        "on_trash": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link"
+        "on_cancel": [
+            "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
+            "gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po",
+        ],
+        "on_trash": [
+            "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
+            "gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po",
+        ],
+        "after_rename": "gmp.gmp_machine.doc_event.po_pis_events.after_rename_po",
     },
     "Order Sheet": {
         "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
     }
 }
+
+
+
+
 
 # Scheduled Tasks
 # ---------------
