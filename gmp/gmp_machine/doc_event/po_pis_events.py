@@ -85,18 +85,18 @@ def on_amend_po(self, method):
 
 
 
-########### gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po
-########### gmp.gmp_machine.doc_event.po_pis_events.after_rename_po
-########### gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po
-########### gmp.gmp_machine.doc_event.po_pis_events.on_amend_po
+# ########### gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po
+# ########### gmp.gmp_machine.doc_event.po_pis_events.after_rename_po
+# ########### gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po
+# ########### gmp.gmp_machine.doc_event.po_pis_events.on_amend_po
 
 
 
 
-doc_events = {
-    "Purchase Order": {
-        "on_cancel": "gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po",
-        "after_rename": "gmp.gmp_machine.doc_event.po_pis_events.after_rename_po",
-        "on_trash": "gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po",
-    }
-}
+# doc_events = {
+#     "Purchase Order": {
+#         "on_cancel": "gmp.gmp_machine.doc_event.po_pis_events.on_cancel_po",
+#         "after_rename": "gmp.gmp_machine.doc_event.po_pis_events.after_rename_po",
+#         "on_trash": "gmp.gmp_machine.doc_event.po_pis_events.validate_delete_po",
+#     }
+# }
