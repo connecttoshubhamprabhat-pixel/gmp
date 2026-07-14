@@ -165,6 +165,7 @@ doctype_js = {
 
 
 
+
 doc_events = {
     "Quotation": {
         "validate": "gmp.gmp_machine.doc_event.quotation.validate",
@@ -192,6 +193,19 @@ doc_events = {
         "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
