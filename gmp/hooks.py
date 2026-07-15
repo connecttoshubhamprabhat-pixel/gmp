@@ -193,7 +193,7 @@ doc_events = {
         "after_insert": "gmp.gmp_machine.doc_event.po_pis_events.on_amend_po",
     },
     "Order Sheet": {
-        "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
+        # "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
     },
     "Good Receipt Note": {
         "validate": "gmp.gmp_machine.doc_event.grn_po_validate.validate_grn_quantities",
