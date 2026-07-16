@@ -3,7 +3,7 @@ frappe.ui.form.on("Payment Intimation Slip", {
         frm.add_custom_button(__("Update Payment Status"), function () {
 
             frappe.call({
-                method: "gmmmmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+                method: "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
                 freeze: true,
                 freeze_message: __("Updating Payment Status..."),
                 callback: function(r) {
