@@ -222,23 +222,13 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"gmp.tasks.all"
-# 	],
-# 	"daily": [
-# 		"gmp.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"gmp.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"gmp.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"gmp.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"cron": {
+		"55 9 * * *": [
+			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
+		]
+	}
+}
 
 # Testing
 # -------
@@ -315,4 +305,14 @@ doc_events = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+
+
+
+
+
+
+
+
+
+
 
