@@ -144,6 +144,8 @@ def get_purchase_invoice_names(po_names):
     return all_invoice_names
 
 
+
+@frappe.whitelist()
 def update_submitted_pis_payment_status():
     """Update submitted PIS payment statuses from PO/PI payment allocations.
 

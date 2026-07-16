@@ -49,6 +49,7 @@ doctype_js = {
     "Purchase Order": "public/js/purchase_order_grn.js",
     "Good Receipt Note": "public/js/good_receipt_note_po.js",
     "Payment Entry": "public/js/payment_entry_pis.js",
+    "Payment Intimation Slip": "public/js/pis.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -199,6 +200,17 @@ doc_events = {
     "Good Receipt Note": {
         "validate": "gmp.gmp_machine.doc_event.grn_po_validate.validate_grn_quantities",
         "before_submit": "gmp.gmp_machine.doc_event.grn_po_validate.validate_grn_quantities",
+    },
+    "Payment Intimation Slip": {
+        "validate": [
+            "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_po_balance_amount",
+            "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_grand_totals"
+        ],
+        "on_update_after_submit": [
+            "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_po_balance_amount",
+            "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_grand_totals"
+        ],
+        "before_insert": " gmp.gmp_machine.doc_event.pis_po_balance_validate.validate_single_draft_pis"
     }
 }
 
@@ -219,16 +231,17 @@ doc_events = {
 
 
 
-# Scheduled Tasks
-# ---------------
+# # Scheduled Tasks
+# # ---------------
 
-scheduler_events = {
-	"cron": {
-		"55 9 * * *": [
-			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
-		]
-	}
-}
+# scheduler_events = {
+# 	"cron": {
+# 		# "55 9 * * *": [
+# 		"hourly": [
+# 			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
+# 		]
+# 	}
+# }
 
 # Testing
 # -------
