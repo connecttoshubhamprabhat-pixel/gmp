@@ -210,7 +210,7 @@ doc_events = {
             "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_po_balance_amount",
             "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_grand_totals"
         ],
-        "before_insert": " gmp.gmp_machine.doc_event.pis_po_balance_validate.validate_single_draft_pis"
+        "before_insert": "gmp.gmp_machine.doc_event.pis_po_balance_validate.validate_single_draft_pis"
     }
 }
 

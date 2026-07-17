@@ -1,3 +1,4 @@
+##########################################################################################
 import frappe
 from frappe.utils import flt
 
@@ -28,9 +29,13 @@ def update_po_balance_amount(doc, method=None):
     # Update balance on the document
     doc.po_balance_amount = balance
 
-    # Stop only if payment exceeds PO amount
-    if balance < 0:
-        exceeded = abs(balance)
+    # Allow overpayment up to ₹1.00 (rounding tolerance)
+    tolerance = 1.0
+
+    if balance < -tolerance:
+
+        actual_exceeded = abs(balance)
+        exceeded = actual_exceeded - tolerance
 
         rows = ""
 
@@ -71,8 +76,13 @@ def update_po_balance_amount(doc, method=None):
         frappe.throw(
             f"""
             <h3 style="color:#d9534f;margin-bottom:15px;">
-                Payment Amount exceeds the available PO Balance.
+                Payment Amount exceeds the allowed PO Balance tolerance.
             </h3>
+
+            <p>
+                A tolerance of <b>{frappe.format_value(tolerance, currency_options)}</b>
+                is allowed to account for minor rounding differences.
+            </p>
 
             <table class="table table-bordered">
                 <tbody>
@@ -91,8 +101,18 @@ def update_po_balance_amount(doc, method=None):
                         <td>{frappe.format_value(current_payment, currency_options)}</td>
                     </tr>
 
-                    <tr style="background:#ffeaea;font-weight:bold;">
-                        <th>Exceeded Amount ((B + C) − A)</th>
+                    <tr>
+                        <th>Allowed Tolerance</th>
+                        <td>{frappe.format_value(tolerance, currency_options)}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Actual Excess ((B + C) − A)</th>
+                        <td>{frappe.format_value(actual_exceeded, currency_options)}</td>
+                    </tr>
+
+                    <tr style="background:#ffeaea;font-weight:bold;color:#d9534f;">
+                        <th>Excess Beyond Tolerance</th>
                         <td>{frappe.format_value(exceeded, currency_options)}</td>
                     </tr>
                 </tbody>
@@ -115,12 +135,15 @@ def update_po_balance_amount(doc, method=None):
             </table>
 
             <div style="margin-top:12px;padding:10px;background:#f8f9fa;border-radius:4px;">
-                <b>Note:</b> Click on a <b>PIS ID</b> to open it in a new browser tab.
+                <b>Note:</b> Overpayment up to <b>{frappe.format_value(tolerance, currency_options)}</b> is allowed for rounding adjustments.
+                <br>
+                Click on a <b>PIS ID</b> to open it in a new browser tab.
             </div>
             """,
             title="Payment Limit Exceeded",
         )
 ################      gmp.gmp_machine.doc_event.pis_po_balance_validate.update_po_balance_amount
+##########################################################################################
 
 
 
@@ -131,15 +154,14 @@ def update_po_balance_amount(doc, method=None):
 
 
 
-
-
+##########################################################################################
 ################      gmp.gmp_machine.doc_event.pis_po_balance_validate.validate_single_draft_pis
 
 import frappe
 from frappe.utils import format_datetime
 
 
-def validate_single_draft_pis(doc):
+def validate_single_draft_pis(doc, method=None):
     if not doc.purchase_order:
         return
 
@@ -206,6 +228,7 @@ def validate_single_draft_pis(doc):
         title="Draft Payment Intimation Slip Exists"
     )
 
+##########################################################################################
 
 
 
@@ -216,22 +239,7 @@ def validate_single_draft_pis(doc):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+##########################################################################################
 
 import frappe
 from frappe.utils import flt
@@ -259,8 +267,5 @@ def update_grand_totals(doc, method=None):
         doc.grand_gst_total += flt(row.gst_amount)
         doc.grand_grand_total_material += flt(row.grand_total_material)
 
-
-
-
-
 #################  gmp.gmp_machine.doc_event.pis_po_balance_validate.update_grand_totals
+##########################################################################################

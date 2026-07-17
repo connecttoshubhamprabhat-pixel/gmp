@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 frappe.ui.form.on("Payment Intimation Slip", {
     refresh(frm) {
         frm.add_custom_button(__("Update Payment Status"), function () {
@@ -27,6 +28,7 @@ frappe.ui.form.on("Payment Intimation Slip", {
         }, __("Tools"));
     }
 });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -37,8 +39,7 @@ frappe.ui.form.on("Payment Intimation Slip", {
 
 
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function update_po_balance_amount(frm) {
     if (!frm.doc.purchase_order || !frm.doc.po_original_amount) {
@@ -84,20 +85,11 @@ async function update_po_balance_amount(frm) {
     }
 }
 
+
+
 frappe.ui.form.on("Payment Intimation Slip", {
     refresh(frm) {
         update_po_balance_amount(frm);
-    },
-
-    async validate(frm) {
-        const balance = await update_po_balance_amount(frm);
-
-        // Prevent save if negative
-        // if (flt(balance) < 0) {
-        //     frappe.throw(__(
-        //         "Payment Amount exceeds the available PO Balance Amount."
-        //     ));
-        // }
     },
 
     purchase_order(frm) {
@@ -112,3 +104,5 @@ frappe.ui.form.on("Payment Intimation Slip", {
         update_po_balance_amount(frm);
     }
 });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
