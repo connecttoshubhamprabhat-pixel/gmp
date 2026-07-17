@@ -370,56 +370,6 @@ def create_material_request(material_requests):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # =========================================================
 # EMAIL + ERRORS
 # =========================================================
@@ -508,4 +458,4 @@ def notify_errors(exceptions):
 
 
 ########.  erpnext.stock.reorder_item.reorder_item
-######## bom_fix.bom_fix.doctype.custom_settings.custom_settings.reorder_item
+######## gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item

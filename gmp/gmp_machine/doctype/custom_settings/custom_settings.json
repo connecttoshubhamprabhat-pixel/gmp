@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "creation": "2026-07-05 16:41:45.217381",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -87,8 +86,8 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-07-05 16:41:45.217381",
- "modified_by": "connecttoshubhamprabhat@gmail.com",
+ "modified": "2026-07-17 15:11:32.291772",
+ "modified_by": "Administrator",
  "module": "Gmp Machine",
  "name": "Custom Settings",
  "owner": "connecttoshubhamprabhat@gmail.com",
