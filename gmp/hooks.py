@@ -211,7 +211,10 @@ doc_events = {
             "gmp.gmp_machine.doc_event.pis_po_balance_validate.update_grand_totals"
         ],
         "before_insert": "gmp.gmp_machine.doc_event.pis_po_balance_validate.validate_single_draft_pis"
-    }
+    },
+    "Purchase Invoice": {
+        "before_save": "gmp.gmp_machine.doc_event.purchae_invoice_po_validate.validate_multiple_po",
+    },
 }
 
 
@@ -234,14 +237,42 @@ doc_events = {
 # # Scheduled Tasks
 # # ---------------
 
-# scheduler_events = {
-# 	"cron": {
-# 		# "55 9 * * *": [
-# 		"hourly": [
-# 			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
-# 		]
-# 	}
-# }
+scheduler_events = {
+	"cron": {
+		"25 15 * * *": [
+		# "hourly": [
+			# "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status" not complete yet,
+            # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
+		]
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+############## applying on list view #############
+permission_query_conditions = {
+    "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.item_list",
+}
+
+
+########## code works after open the item #########
+has_permission = {
+    "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.has_item_permission",
+}
+
+
+
+
+
+
 
 # Testing
 # -------

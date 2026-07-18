@@ -1,28 +1,3 @@
-# # Copyright (c) 2026, gmp and contributors
-# # For license information, please see license.txt
-
-# # import frappe
-# from frappe.model.document import Document
-
-
-# class CustomSettings(Document):
-# 	pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Copyright (c) 2026, BOM Fix and contributors
 # For license information, please see license.txt
 
