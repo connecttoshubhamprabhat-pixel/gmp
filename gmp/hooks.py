@@ -215,6 +215,9 @@ doc_events = {
     "Purchase Invoice": {
         "before_save": "gmp.gmp_machine.doc_event.purchae_invoice_po_validate.validate_multiple_po",
     },
+    "Payment Entry": {
+        "on_submit": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
+    }
 }
 
 
@@ -234,23 +237,29 @@ doc_events = {
 
 
 
-# # Scheduled Tasks
-# # ---------------
+# # # Scheduled Tasks
+# # # ---------------
+
+# scheduler_events = {
+# 	"cron": {
+# 		"55 15 * * *": [
+# 		# "hourly": [
+# 			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+#             # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
+# 		]
+# 	}
+# }
+
+
 
 scheduler_events = {
-	"cron": {
-		"55 15 * * *": [
-		# "hourly": [
-			# "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status" not complete yet,
-			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+    "cron": {
+        "*/30 * * * *": [
+            "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
             # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
-		]
-	}
+        ]
+    }
 }
-
-
-
-
 
 
 
