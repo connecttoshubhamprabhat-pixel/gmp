@@ -144,26 +144,6 @@ doctype_js = {
 # # ---------------
 # # Hook on document methods and events
 
-# doc_events = {
-# 	"Quotation": {
-# 		"validate": "gmp.gmp_machine.doc_event.quotation.validate",
-# 	},
-#     "Sales Order":{
-#         "validate": "gmp.gmp_machine.doc_event.sales_order.validate"
-#     },
-#     "*": {
-#         "before_naming": "gmp.gmp_machine.doc_event.naming_series.before_naming",
-#     },
-#     "Purchase Order": {
-#         "validate": "gmp.gmp_machine.doc_event.po_os_events.validate_order_sheet_linkage",
-#         "on_update": "gmp.gmp_machine.doc_event.po_os_events.update_order_sheet_item",
-#         "on_cancel": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link",
-#         "on_trash": "gmp.gmp_machine.doc_event.po_os_events.clear_order_sheet_item_link"
-#     },
-#     "Order Sheet": {
-#         "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
-#     }
-# }
 
 
 
@@ -240,18 +220,6 @@ doc_events = {
 # # # Scheduled Tasks
 # # # ---------------
 
-# scheduler_events = {
-# 	"cron": {
-# 		"55 15 * * *": [
-# 		# "hourly": [
-# 			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
-#             # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
-# 		]
-# 	}
-# }
-
-
-
 scheduler_events = {
     "cron": {
         "*/30 * * * *": [
@@ -267,13 +235,13 @@ scheduler_events = {
 
 
 
-############## applying on list view #############
+############## applying on list view not on the form  #############
 permission_query_conditions = {
     "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.item_list",
 }
 
 
-########## code works after open the item #########
+############## code works form not on the lis    ###############
 has_permission = {
     "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.has_item_permission",
 }
