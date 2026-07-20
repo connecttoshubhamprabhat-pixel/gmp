@@ -239,9 +239,10 @@ doc_events = {
 
 scheduler_events = {
 	"cron": {
-		"25 15 * * *": [
+		"55 15 * * *": [
 		# "hourly": [
 			# "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status" not complete yet,
+			"gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
             # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
 		]
 	}
@@ -273,6 +274,9 @@ has_permission = {
 
 
 
+
+
+after_migrate = "gmp.gmp_machine.set_up.item__update_after_migrate.execute_after_migrate"
 
 # Testing
 # -------
