@@ -235,13 +235,13 @@ scheduler_events = {
 
 
 
-############## applying on list view not on the form  #############
+############## Applying on list view, not on the form #############
 permission_query_conditions = {
     "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.item_list",
 }
 
 
-############## code works form not on the lis    ###############
+############## Code works on form, not on the list   ###############
 has_permission = {
     "Item": "gmp.gmp_machine.permission_condition.item_list_perm_cond.has_item_permission",
 }
