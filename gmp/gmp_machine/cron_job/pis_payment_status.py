@@ -562,7 +562,8 @@ def get_submitted_pis_records(purchase_order):
 
 
 @frappe.whitelist()
-def update_submitted_pis_payment_status():
+# def update_submitted_pis_payment_status():
+def update_submitted_pis_payment_status(doc=None, method=None):
     """Submitted PIS payment statuses ko FIFO order me update karega."""
 
     pis_rows = frappe.get_all(
