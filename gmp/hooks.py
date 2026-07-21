@@ -196,7 +196,10 @@ doc_events = {
         "before_save": "gmp.gmp_machine.doc_event.purchae_invoice_po_validate.validate_multiple_po",
     },
     "Payment Entry": {
-        "on_submit": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status"
+        "on_submit": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+        "on_update_after_submit": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+        "validate": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
+        "on_cancel": "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
     }
 }
 
@@ -222,7 +225,7 @@ doc_events = {
 
 scheduler_events = {
     "cron": {
-        "*/30 * * * *": [
+        "*/15 * * * *": [
             "gmp.gmp_machine.cron_job.pis_payment_status.update_submitted_pis_payment_status",
             # "gmp.gmp_machine.doctype.custom_settings.custom_settings.reorder_item"
         ]

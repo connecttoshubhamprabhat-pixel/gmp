@@ -297,7 +297,7 @@
 
 
 
-
+########### Below code is using for cron job and used on doc event of on_cancel, validate, on_update_after_submit, on_submit ###########
 import frappe
 from frappe.utils import flt
 
