@@ -174,6 +174,12 @@ doc_events = {
         "after_rename": "gmp.gmp_machine.doc_event.po_pis_events.after_rename_po",
         "after_insert": "gmp.gmp_machine.doc_event.po_pis_events.on_amend_po",
     },
+    "Quality Inspection": {
+        "on_update": "gmp.gmp_machine.doc_event.quality_inspection.update_purchase_order_item",
+        "on_submit": "gmp.gmp_machine.doc_event.quality_inspection.update_purchase_order_item",
+        "on_cancel": "gmp.gmp_machine.doc_event.quality_inspection.update_purchase_order_item",
+        "on_trash": "gmp.gmp_machine.doc_event.quality_inspection.update_purchase_order_item",
+    },
     "Order Sheet": {
         # "autoname": "gmp.gmp_machine.doc_event.os_auto_name.set_custom_name"
     },
@@ -333,8 +339,6 @@ after_migrate = "gmp.gmp_machine.set_up.item__update_after_migrate.execute_after
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
-
 
 
 
